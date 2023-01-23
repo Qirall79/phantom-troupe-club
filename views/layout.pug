@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    nav 
+      h1 Phantom Troupe Club
+      ul 
+        li 
+          a(href="/") Home 
+        if !user
+          li 
+            a(href="/sign-up") Sign Up
+          li 
+            a(href="/login") Login 
+        else 
+          li 
+            a(href="/logout") Log Out 
+          
+    #content
+      block content

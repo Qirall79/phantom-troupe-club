@@ -1,0 +1,31 @@
+extends layout 
+
+block content 
+    h1= title 
+
+    form(action="", method="post")
+        .form-group 
+            label(for="first_name") First Name 
+            input(type="text", name="first_name", id="first_name", value=(user ? user.first_name : ""))  
+        .form-group 
+            label(for="last_name") Last Name 
+            input(type="text", name="last_name", id="last_name", value=(user ? user.last_name : ""))  
+        .form-group 
+            label(for="username") Username 
+            input(type="text", name="username", id="username", value=(user ? user.username : ""))  
+        .form-group 
+            label(for="password") Password 
+            input(type="password", name="password", id="password")  
+        .form-group 
+            label(for="password_confirmation") Password Confirmation 
+            input(type="password", name="password_confirmation", id="password_confirmation")
+        input(type="submit", value="Sign Up")
+    p 
+        | Already have an account ? 
+        a(href="/login") Login 
+
+    if errors 
+        ul 
+            each error in errors
+                li= error.msg
+

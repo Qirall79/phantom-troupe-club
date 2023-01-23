@@ -1,0 +1,73 @@
+body {
+  padding: 0;
+  margin: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+a {
+  color: #00b7ff;
+}
+
+nav {
+  width: 100%;
+  padding: 50px 80px;
+  background-color: #002255;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+nav ul {
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+nav h1 {
+  font-size: 2.5rem;
+}
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.1rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+#content {
+  padding: 30px 80px;
+}
+
+/*---- Form styles ----*/
+form {
+  width: 50%;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.form-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-group input {
+  height: 30px;
+  width: 65%;
+}
+.form-group label {
+  width: 30%;
+}

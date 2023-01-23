@@ -1,0 +1,14 @@
+extends layout 
+
+block content 
+    h1= title 
+
+    ul 
+        each message in messages
+            hr 
+            li
+                if user 
+                    p #[strong by: ] #{user.full_name}
+                p #[strong message: ] #{message.text}
+                p #[ time: ] #{message.timestamp_formatted}
+        

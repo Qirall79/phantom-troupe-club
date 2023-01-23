@@ -1,0 +1,13 @@
+extends layout 
+block content 
+
+    h1= title 
+
+    form(action="", method="post") 
+        .form-group 
+            label(for="username") Username 
+            input(type="text", name="username", id="username") 
+        .form-group 
+            label(for="password") Password 
+            input(type="password", name="password", id="password") 
+        input(type="submit", value="Login")
