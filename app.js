@@ -9,7 +9,9 @@ const passport = require("passport");
 // Database setup
 const mongoose = require("mongoose");
 require("dotenv").config();
-const mongoDb = process.env.MONGODB_URI;
+const mongoDb =
+  process.env.MONGODB_URI ||
+  "mongodb+srv://walid:walid123@cluster0.hqkhs9t.mongodb.net/members_only?retryWrites=true&w=majority";
 
 main().catch((err) => console.log(err));
 async function main() {

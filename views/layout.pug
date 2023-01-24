@@ -30,7 +30,7 @@ html
     
     #content
       if currentUser 
-        p Status: 
+        p(id="status") Status:  
           span(style=`text-transform: capitalize;color: ${currentUser.membership==="admin" ? "blue" : (currentUser.membership==="member" ? "green" : "red")}`) #[strong #{currentUser.membership}]
         br
       block content

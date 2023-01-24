@@ -44,6 +44,7 @@ exports.sign_up_post = [
     .custom((value, { req }) => value === req.body.password),
   (req, res, next) => {
     const errors = validationResult(req);
+    let exists = false;
     const user = new User({
       first_name: req.body.first_name,
       last_name: req.body.last_name,
@@ -52,19 +53,29 @@ exports.sign_up_post = [
       avatar: req.body.avatar,
     });
 
-    if (!errors.isEmpty()) {
-      res.render("sign-up", {
-        title: "Sign Up",
-        errors: errors.array(),
-        user,
-      });
-      return;
-    }
-    user.save((err) => {
+    User.findOne({ username: req.body.username }).exec((err, oldUser) => {
       if (err) {
         return next(err);
       }
-      res.redirect("/login");
+      // check if username exists
+      if (oldUser != null) {
+        exists = true;
+      }
+      if (!errors.isEmpty() || exists) {
+        res.render("sign-up", {
+          title: "Sign Up",
+          errors: errors.array(),
+          exists,
+          user,
+        });
+        return;
+      }
+      user.save((err) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect("/login");
+      });
     });
   },
 ];
@@ -89,6 +100,13 @@ exports.login_post = (req, res, next) => {
         error: "Username or password incorrect",
       });
       return;
+    }
+    if (user.username === "anonymous") {
+      User.findByIdAndUpdate(user._id, { membership: "visitor" }, {}, (err) => {
+        if (err) {
+          return next(err);
+        }
+      });
     }
     req.logIn(user, (err) => {
       if (err) {

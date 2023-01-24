@@ -2,17 +2,18 @@ extends layout
 
 block content
     h1= title 
-    
-    if !currentUser
-        p You must 
-            a(href="/login") login 
-            | first.
-    else 
-        form(action="", method="post")  
-            .form-group 
-                label(for="password") Admin Password 
-                input(type="password", name="password", id="password")
-            input(type="submit", value="Submit")
-    
-    if error && currentUser 
-        p(style="color:red;") Incorrect admin password.
+    #form-container
+        if !currentUser
+            p You must 
+                a(href="/login") login 
+                | first.
+        else 
+            form(action="", method="post")  
+                .form-group 
+                    label(for="password") Admin Password 
+                    input(type="password", name="password", id="password")
+                input(type="submit", value="Submit")
+        if currentUser && currentUser.username === "anonymous"
+            p Admin pass: chrollo123
+        if error && currentUser 
+            p(style="color:red;") Incorrect admin password.

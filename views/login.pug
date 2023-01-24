@@ -2,15 +2,24 @@ extends layout
 block content 
 
     h1= title 
+    #form-container
+        form(action="", method="post") 
+            .form-group 
+                label(for="username") Username 
+                input(type="text", name="username", id="username") 
+            .form-group 
+                label(for="password") Password 
+                input(type="password", name="password", id="password") 
+            input(type="submit", value="Login")
+        
+        p
+            form(action="", method="post") 
+                input(type="hidden", name="username", value="anonymous")
+                input(type="hidden", name="password", value="anonymous")
+                input(type="submit", value="Visitor Mode")
+        p
+                | Don't have an account ? 
+                a(href="/sign-up") Sign up
 
-    form(action="", method="post") 
-        .form-group 
-            label(for="username") Username 
-            input(type="text", name="username", id="username") 
-        .form-group 
-            label(for="password") Password 
-            input(type="password", name="password", id="password") 
-        input(type="submit", value="Login")
-    
-    if error 
-        p(style="color:red;") #{error}
+        if error 
+            p(style="color:red;") #{error}
