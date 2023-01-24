@@ -1,21 +1,22 @@
 extends layout 
 
 block content 
-    h1= title 
 
-    ul 
+    ul(id="messages") 
         each message in messages
-            hr 
-            li
-                p #[strong #{message.title}] 
-                p #[strong message: ] #{message.text}
-                p #[ time: ] #{message.timestamp_formatted}
-                if user 
-                    img(src=message.user.avatar, alt="avatar")
-                    p #[strong by: ] #{message.user.full_name}
-                    if user.membership=="admin"
-                        .delete 
-                            form(action="/messages/delete", method="post") 
-                                input(type="hidden", name="message_id", value=(message._id))
-                                input(type="submit", value="Delete")
+            li(class="message")
+                img(src=( user ? message.user.avatar : "/images/spider.jpg"), alt="avatar")
+                .content 
+                    h3= message.title
+                    p(class="text")= message.text
+                    hr
+                    .infos 
+                        p by:  
+                            span(class="user") #{user ? message.user.full_name : "Unknown"}
+                        p= message.timestamp_formatted
+                        if user && user.membership=="admin"
+                            .delete 
+                                form(action="/messages/delete", method="post") 
+                                    input(type="hidden", name="message_id", value=(message._id))
+                                    input(type="submit", value="Delete")
         
