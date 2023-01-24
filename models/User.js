@@ -12,6 +12,7 @@ const User = new Schema({
     required: true,
     default: "visitor",
   },
+  avatar: { type: String, default: "/images/Chrollo_Lucilfer.webp" },
 });
 
 User.virtual("full_name").get(function () {

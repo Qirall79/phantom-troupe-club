@@ -1,0 +1,23 @@
+extends layout 
+
+block content 
+    h1= title 
+    
+    if currentUser && currentUser.membership==="visitor"
+        p #[strong You must be member to create a message.]
+    else 
+        form(action="", method="post") 
+            .form-group 
+                label(for="title")  Title 
+                input(type="text", name="title", id="title") 
+            .form-group 
+                label(for="message")  Message 
+                input(type="text", name="message", id="message") 
+            input(type="submit", value="Send")
+
+    if errors
+        ul 
+            each error in errors 
+                li(style="color:red") #{error.msg}
+
+    

@@ -9,14 +9,29 @@ html
       ul 
         li 
           a(href="/") Home 
-        if !user
+        if !currentUser
           li 
             a(href="/sign-up") Sign Up
           li 
             a(href="/login") Login 
         else 
+          if currentUser.membership=="visitor"
+            li 
+              a(href="/join") Join Club
+          else 
+             li 
+              a(href="/messages/new") Create Message
+          if currentUser.membership !== "admin"
+              li 
+                a(href="/admin") Admin
           li 
             a(href="/logout") Log Out 
-          
+    
     #content
+      if currentUser 
+        p Status: 
+          span(style=`text-transform: capitalize;color: ${currentUser.membership==="admin" ? "blue" : (currentUser.membership==="member" ? "green" : "red")}`) #[strong #{currentUser.membership}]
+        br
       block content
+
+      script(src="/javascripts/index.js") 

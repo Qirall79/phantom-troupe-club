@@ -1,0 +1,18 @@
+extends layout 
+
+block content 
+    h1= title 
+
+    if !currentUser
+        p You must 
+            a(href="/login") login 
+            | first.
+    else 
+        form(action="", method="post") 
+            .form-group 
+                label(for="password") Enter your pass 
+                input(type="password", name="password", id="password") 
+            input(type="submit", value="Join")
+    
+    if error && currentUser
+        p(style="color: red;") #{error} 

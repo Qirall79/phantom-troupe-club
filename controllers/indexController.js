@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const Message = require("../models/Message");
 const { body, validationResult, check } = require("express-validator");
+const passport = require("passport");
 
 // password encryption
 const hashPassword = require("../utils/hashPassword");
@@ -48,6 +49,7 @@ exports.sign_up_post = [
       last_name: req.body.last_name,
       username: req.body.username,
       password: hashPassword(req.body.password),
+      avatar: req.body.avatar,
     });
 
     if (!errors.isEmpty()) {
@@ -77,7 +79,24 @@ exports.login_get = (req, res, next) => {
 };
 
 exports.login_post = (req, res, next) => {
-  res.redirect("/");
+  passport.authenticate("local", (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      res.render("login", {
+        title: "Login",
+        error: "Username or password incorrect",
+      });
+      return;
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect("/");
+    });
+  })(req, res, next);
 };
 
 exports.logout_get = (req, res, next) => {

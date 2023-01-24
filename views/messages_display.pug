@@ -7,8 +7,15 @@ block content
         each message in messages
             hr 
             li
-                if user 
-                    p #[strong by: ] #{user.full_name}
+                p #[strong #{message.title}] 
                 p #[strong message: ] #{message.text}
                 p #[ time: ] #{message.timestamp_formatted}
+                if user 
+                    img(src=message.user.avatar, alt="avatar")
+                    p #[strong by: ] #{message.user.full_name}
+                    if user.membership=="admin"
+                        .delete 
+                            form(action="/messages/delete", method="post") 
+                                input(type="hidden", name="message_id", value=(message._id))
+                                input(type="submit", value="Delete")
         
