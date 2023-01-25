@@ -17,6 +17,7 @@ https://phantom-troupe-club.onrender.com
 - Only admins can delete messages.
 - To change to admin status you have to provide an admin password (chrollo123).
 - During sign up, the user is asked to choose his avatar, which are photos of The Phantom Troupe members from Hunter x Hunter anime. The default avatar is Chrollo's.
+- You can sign as visitor if you don't want to waste time filling the form.
 ## Technologies Used
 - NodeJS
 - ExpressJS
