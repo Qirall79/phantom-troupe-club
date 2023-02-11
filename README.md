@@ -1,5 +1,7 @@
 
 # The Phantom Troupe Club
+![image](https://user-images.githubusercontent.com/66278832/218255329-7b1cada1-5ff9-4f7b-87f4-2ec9790e8eeb.png)
+
 
 In this project I built an exclusive clubhouse where club members can write anonymous posts. Inside the clubhouse, members can see who the author of a post is, but outside they can only see the story and wonder who wrote it.
 
